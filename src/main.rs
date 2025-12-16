@@ -1,5 +1,3 @@
-use crate::user_input::get_user_input_trimmed;
-
 mod text_parser;
 mod user_input;
 mod random_code_generator;
@@ -7,6 +5,9 @@ mod code_guess;
 mod round;
 mod clear_terminal;
 mod wrap_text;
+mod play;
+
+use crate::user_input::get_user_input_trimmed;
 
 # [derive(Debug, PartialEq)]
 enum GameState {
@@ -20,16 +21,19 @@ impl GameState {
     fn change_to (&mut self, new_state: GameState) {
         if *self != new_state {
             *self = new_state;
+            clear_terminal::clear_terminal();
         }
     } 
 
     fn on_enter(&mut self){
         match self {
             GameState::MainMenu => {
+                title();
                 main_menu_display();
             }
 
             GameState::Tutorial { shown } => {
+                title();
                 if !*shown {
                     tutorial_display();
                     *shown = true;
@@ -49,15 +53,15 @@ impl GameState {
     fn update (&mut self) -> usize{
         match self {
             GameState::MainMenu => {
-                println!("Menu!");
+                //println!("Menu!");
 
                 main_menu_handling(self);
                 separating_line();
             },
             GameState::Play => {
-                println!("Playing");
+                //println!("Playing");
 
-                play();
+                play::play();
             },
             GameState::Tutorial { .. } => {
                 println!("Type anything to Return to Main Menu");
@@ -167,7 +171,7 @@ fn title(){
 }
 
 fn main_menu_display(){
-    title();
+    //title();
 
     println!("Main Menu");
     separating_line();
@@ -196,14 +200,6 @@ fn main_menu_handling (state: &mut GameState) {
         3 => state.change_to(GameState::Quit),
         _ => println!("Error"),
     }
-}
-
-fn play(){
-    let alphabet: &str = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
-
-    //let result: Vec<ResultCode> = round::round(alphabet, 5);
-
-    round::round(alphabet, 5);
 }
 
 fn tutorial_display(){

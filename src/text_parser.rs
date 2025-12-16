@@ -1,3 +1,5 @@
+use crate::clear_terminal;
+
 pub fn text_to_code(text: &str) -> Vec<String> {
     let text_vec: Vec<&str> = text.split_whitespace().collect();
 
@@ -27,6 +29,7 @@ pub fn text_to_u_int(text: &str) -> usize {
         Ok(n) => n,
         Err(e) => {
             println!("Error: {}", e);
+            clear_terminal::clear_terminal();
             return 0;
         }
     };
