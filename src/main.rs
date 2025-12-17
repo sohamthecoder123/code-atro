@@ -6,6 +6,7 @@ mod round;
 mod clear_terminal;
 mod wrap_text;
 mod play;
+mod jochar;
 
 use crate::user_input::get_user_input_trimmed;
 
@@ -84,7 +85,7 @@ fn main() {
     print!("\x1b]2;CodeAtro\x07");
 
 
-    let mut current_state: GameState = GameState::MainMenu;
+    let mut current_state: GameState = GameState::Play;
     loop {
         current_state.on_enter();
         let game_result: usize = current_state.update();
