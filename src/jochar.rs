@@ -117,26 +117,41 @@ pub fn initiate_jochars() -> Vec<JoChar>{
         is_debuff: false,
     };
 
-    available_jochars.push(regular);
-    available_jochars.push(advanced);
-    available_jochars.push(funny);
-    available_jochars.push(funnier);
-    available_jochars.push(even_funnier);
-    available_jochars.push(funniest);
-    available_jochars.push(absolute);
-    available_jochars.push(double_the_stakes);
-    available_jochars.push(vowel_phile);
-    available_jochars.push(consonant_phile);
-    available_jochars.push(number_phile);
-    available_jochars.push(collector);
-    available_jochars.push(debuff_collector);
+    let negative_marking: JoChar = JoChar {
+        name: "Negative Marking".to_string(),
+        desc: "-1 Score for each Character present in a Guess but not in the Code.".to_string(),
+        cost: 2,
+        rarity: 1,
+        is_debuff: true,
+    };
+
+    available_jochars.push(regular); //0
+    available_jochars.push(advanced); //1
+    available_jochars.push(funny); //2
+    available_jochars.push(funnier); //3
+    available_jochars.push(even_funnier); //4
+    available_jochars.push(funniest); //5
+    available_jochars.push(absolute); //6
+    available_jochars.push(double_the_stakes); //7
+    available_jochars.push(vowel_phile); //8
+    available_jochars.push(consonant_phile); //9
+    available_jochars.push(number_phile); //10
+    available_jochars.push(collector); //11
+    available_jochars.push(debuff_collector); //12
+    available_jochars.push(negative_marking); //13
 
     return available_jochars;
 }   
 
-pub fn show_jochar(joChar: &JoChar){
-    println!("Name: {}", wrap_text::wrap_text(&joChar.name));
-    println!("-----");
-    println!("Description: {}", wrap_text::wrap_text(&joChar.desc));
-    println!("-----")
+pub fn show_jochar(jo_char: &JoChar){
+    println!("Name: {}", wrap_text::wrap_text(&jo_char.name));
+    println!("Description: {}", wrap_text::wrap_text(&jo_char.desc));
+
+    if jo_char.is_debuff {
+        println!("Debuff: Yes");
+    }
+
+    else {
+        println!("Debuff: No");
+    }
 }

@@ -10,8 +10,15 @@ pub fn play(){
 
     jochars_in_play[0] = 1;
     jochars_in_play[1] = 2;
+    jochars_in_play[13] = 3;
 
-    let number_of_debuffs: usize = 0;
+    let mut number_of_debuffs: usize = 0;
+
+    for i in 0..jochars_in_play.len(){
+        if available_jochars[i].is_debuff {
+            number_of_debuffs += jochars_in_play[i];
+        }
+    }
 
     let mut round_no: usize = 1;
     let mut current_length: usize = 2;
@@ -35,12 +42,14 @@ pub fn play(){
             for i in 0..jochars_in_play.len() {
                 if jochars_in_play[i] != 0 {
                     jochar::show_jochar(&available_jochars[i]);
-                    println!("-----");
                     println!("Quantity: {}", jochars_in_play[i]);
                     separating_line();
                 }
             }
         }
+
+        println!("Number of Debuffed JoChars: {}", number_of_debuffs);
+
 
 
         println!("Round {}", round_no);

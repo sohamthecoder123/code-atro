@@ -5,7 +5,6 @@ use crate::text_parser;
 use crate::user_input;
 use crate::code_guess;
 use crate::separating_line;
-use crate::jochar;
 
 pub fn round(overall_alphabet_string: &str, alphabet_length: usize, code_length: usize, max_attempts: usize, wealth: &mut f64, jochars_in_play: &Vec<usize>) -> bool {
     let overall_alphabet: Vec<String> = text_parser::text_to_code(overall_alphabet_string);
@@ -57,15 +56,19 @@ pub fn round(overall_alphabet_string: &str, alphabet_length: usize, code_length:
                 ResultCode::OutOfPlace => {
                     println!("Out Of Place!");
                     is_round_defeated = false;
-                    score += 0.0;
-                    println!("Score +0");
+                    score += 0.5;
+                    println!("Score +0.5");
                 }
 
                 ResultCode::NotInCode => {
                     println!("Not In Code!");
                     is_round_defeated = false;
-                    score -= 0.5;
-                    println!("Score -0.5");
+                    
+                    for _ in 1..=jochars_in_play[13] {
+                        score -= 1.0;
+                        println!("Negative Marking found.");
+                        println!("Score -1.0");
+                    }                    
                 }
                 
                 ResultCode::SizeError => {
