@@ -4,12 +4,16 @@ use crate::user_input;
 use crate::clear_terminal;
 use crate::jochar;
 
+
+
 pub fn play(){
     let available_jochars: Vec<jochar::JoChar> = jochar::initiate_jochars();
     let mut jochars_in_play: Vec<usize> = vec![0; available_jochars.len()];
 
     jochars_in_play[0] = 1;
     jochars_in_play[1] = 2;
+    jochars_in_play[5] = 1;
+    jochars_in_play[7] = 1;
     jochars_in_play[13] = 3;
 
     let mut number_of_debuffs: usize = 0;
@@ -65,8 +69,11 @@ pub fn play(){
         round_no += 1;
 
         let two: usize = 2;
-
         current_length = two.pow((round_no / 2) as u32);
+
+        println!("Enter anything to Start Next Round.");
+        let _dummy: String = user_input::get_user_input_trimmed("");
+        clear_terminal::clear_terminal();
     }
     
     println!("You Lost!!!");

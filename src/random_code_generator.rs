@@ -4,6 +4,7 @@ This file handles the random code generation
 
 use rand::Rng; 
 use rand::seq::SliceRandom;
+use std::collections::HashMap;
 
 //Randomly generates the code on the basis of a given alphabet
 pub fn generate_code(alphabet: &Vec<String>, length: usize) -> Vec<String>{
@@ -31,3 +32,29 @@ pub fn generate_alphabet(overall_alphabet: &Vec<String>, alphabet_length: usize)
 
     return _generated_alphabet;    
 }
+
+pub fn reveal_characters_random(code: &Vec<String>, n: usize) -> Vec<String>{
+    let mut _revealed_characters: Vec<String> = Vec::new();
+
+    _revealed_characters = code.clone();
+    _revealed_characters.shuffle(&mut rand::thread_rng());
+    _revealed_characters.truncate(n);
+
+    return _revealed_characters;
+}
+
+pub fn reveal_characters_position(code: &Vec<String>, n: usize) -> HashMap<usize, &String>{
+    let mut _perm_1_to_n: Vec<usize> = (1..=n).collect();
+    _perm_1_to_n.shuffle(&mut rand::thread_rng());
+    _perm_1_to_n.truncate(n);
+
+    let mut _revealed_characters: HashMap<usize, &String> = HashMap::new();
+
+    for i in _perm_1_to_n {
+        _revealed_characters.insert(i, &code[i-1]);
+    }
+
+    return _revealed_characters;
+
+}
+

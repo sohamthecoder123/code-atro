@@ -18,7 +18,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
         cost: 5,
         rarity: 1,
         is_debuff: false,
-    };
+    };  
 
     let advanced: JoChar = JoChar {
         name: "Advanced JoChar".to_string(),
@@ -38,7 +38,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let funnier: JoChar = JoChar { 
         name: "Funnier JoChar".to_string(), 
-        desc: "Reveals 1 Character in the Code and its Position before the Start of the Round.".to_string(), 
+        desc: "Reveals 2 Characters in the Code (without Positions) before the Start of the Round. Stops Funny JoChar from Activating.".to_string(), 
         cost: 14, 
         rarity: 3,
         is_debuff: false,  
@@ -47,7 +47,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let even_funnier: JoChar = JoChar { 
         name: "Even Funnier JoChar".to_string(), 
-        desc: "Reveals 2 Characters in the Code (without Positions) before the Start of the Round.".to_string(), 
+        desc: "Reveals 1 Character in the Code and its Position before the Start of the Round. Stops Funnier and lower JoChars from Activating.".to_string(), 
         cost: 28, 
         rarity: 4,
         is_debuff: false,  
@@ -55,8 +55,8 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let funniest: JoChar = JoChar { 
         name: "Funniest JoChar".to_string(), 
-        desc: "Reveals 2 Characters in the Code and their Positions before the Start of the Round.".to_string(), 
-        cost: 28, 
+        desc: "Reveals 2 Characters in the Code and their Positions before the Start of the Round. Stops Even Funnier and lower JoChars from Activating.".to_string(), 
+        cost: 35, 
         rarity: 4,
         is_debuff: false,  
     };
@@ -71,7 +71,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let double_the_stakes: JoChar = JoChar { 
         name: "Double The Stakes".to_string(), 
-        desc: "Doubles both the Score gained by getting a Character right, and the penalty on getting it wrong.".to_string(), 
+        desc: "Doubles the Profit. Doubles the Loss. Note: It Stacks.".to_string(), 
         cost: 10,
         rarity: 2,
         is_debuff: false, 
@@ -79,7 +79,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let vowel_phile: JoChar = JoChar {
         name: "VowelPhile".to_string(),
-        desc: "The Score provided by every Vowel guessed correctly is doubled. Penalties remian unaffected.".to_string(),
+        desc: "The Profit provided by every Vowel guessed correctly is doubled. Penalties remian unaffected.".to_string(),
         cost: 5,
         rarity: 1,
         is_debuff: false,
@@ -87,7 +87,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let consonant_phile: JoChar = JoChar {
         name: "ConsonantPhile".to_string(),
-        desc: "The Score provided by every Consonant guessed correctly is doubled. Penalties remian unaffected.".to_string(),
+        desc: "The Profit provided by every Consonant guessed correctly is doubled. Penalties remian unaffected.".to_string(),
         cost: 5,
         rarity: 1,
         is_debuff: false,
@@ -95,7 +95,7 @@ pub fn initiate_jochars() -> Vec<JoChar>{
 
     let number_phile: JoChar = JoChar {
         name: "NumberPhile".to_string(),
-        desc: "The Score provided by every Number guessed correctly is doubled. Penalties remian unaffected.".to_string(),
+        desc: "The Profit provided by every Number guessed correctly is doubled. Penalties remian unaffected.".to_string(),
         cost: 5,
         rarity: 1,
         is_debuff: false,
@@ -125,20 +125,20 @@ pub fn initiate_jochars() -> Vec<JoChar>{
         is_debuff: true,
     };
 
-    available_jochars.push(regular); //0
-    available_jochars.push(advanced); //1
-    available_jochars.push(funny); //2
-    available_jochars.push(funnier); //3
-    available_jochars.push(even_funnier); //4
-    available_jochars.push(funniest); //5
-    available_jochars.push(absolute); //6
-    available_jochars.push(double_the_stakes); //7
-    available_jochars.push(vowel_phile); //8
-    available_jochars.push(consonant_phile); //9
-    available_jochars.push(number_phile); //10
-    available_jochars.push(collector); //11
-    available_jochars.push(debuff_collector); //12
-    available_jochars.push(negative_marking); //13
+    available_jochars.push(regular); //0 /
+    available_jochars.push(advanced); //1 /
+    available_jochars.push(funny); //2 /
+    available_jochars.push(funnier); //3 /
+    available_jochars.push(even_funnier); //4 /
+    available_jochars.push(funniest); //5 /
+    available_jochars.push(absolute); //6 
+    available_jochars.push(double_the_stakes); //7 /
+    available_jochars.push(vowel_phile); //8 /
+    available_jochars.push(consonant_phile); //9 /
+    available_jochars.push(number_phile); //10 /
+    available_jochars.push(collector); //11 /
+    available_jochars.push(debuff_collector); //12 
+    available_jochars.push(negative_marking); //13 /
 
     return available_jochars;
 }   

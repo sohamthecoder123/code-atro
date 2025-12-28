@@ -7,6 +7,7 @@ mod clear_terminal; //has a fn which clears the terminal
 mod wrap_text; //has a fn which makes the text wrap
 mod play; //handles the play state
 mod jochar; //handles the JoChars
+mod shop; //handles the shop
 
 //GameState enum. Helps screen navigation
 # [derive(Debug, PartialEq)]
@@ -96,7 +97,7 @@ fn main() {
     print!("\x1b]2;CodeAtro\x07");
 
 
-    let mut current_state: GameState = GameState::MainMenu; //defines a new variable that actually stores the current game state and sets it to the initial value of MainMenu (ie, the game opens with the menu)
+    let mut current_state: GameState = GameState::Play; //defines a new variable that actually stores the current game state and sets it to the initial value of MainMenu (ie, the game opens with the menu)
     
     //the main gameplay loop
     loop {
@@ -109,7 +110,7 @@ fn main() {
         //a game result of 1 means the player hasn't quit, and 0 means they have.
         //so, if the game result is 0...
         if game_result == 0 {
-            return; //...we return nothing. This stops the execution of this fn and terminates the program.
+            return; //...we return nothing. This stops the execution of main and thus terminates the program.
         }
     }
 
@@ -194,7 +195,7 @@ fn title(){
     separating_line(); //The Separating Line of Death (tm)
 
 }
-//"Huh, after all that training, I really feel [TITLE CARD]" - John Invincible, 2023, colorized
+//"Huh, after all that training, I really feel [TITLE CARD]" - John "Timbo" Invincible, 1987, colorized
 
 //handles all the stuff that is displayed at the main menu.
 fn main_menu_display(){
