@@ -1,147 +1,24 @@
-use crate::wrap_text;
+/*
+This file stores the JoChars. Minaly description and stuff.
+The code behind how each JoChar actually functions is in round and play 
+ */
 
+use crate::wrap_text; //because we are displaying text (the descriptions, etc.)
+
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+
+
+//the JoChar struct. Each JoChar has basic stuff like name, description, cost, rarity and a variable to store if it is a debuff or not
 # [derive(Clone)]
 pub struct JoChar {
-    name: String,
-    desc: String,
-    pub cost: isize,
-    pub rarity: isize,
-    pub is_debuff: bool,
+    name: String, //the name of the JoChar
+    desc: String, //description - what the JoChar does
+    pub cost: f64, //the cost of the JoChar in the Shop
+    pub rarity: isize, //the rarity of the JoChar. 
+    pub is_debuff: bool, //whether the JoChar is a debuff or not. Used by the Debuff Collector JoChar to determine the bonus it gives out.
 }
 
-pub fn initiate_jochars() -> Vec<JoChar>{
-    let mut available_jochars: Vec<JoChar> = Vec::new();
-
-    let regular: JoChar = JoChar {
-        name: "Regular JoChar".to_string(),
-        desc: "Adds +4 to your Score at the end of a Round.".to_string(),
-        cost: 5,
-        rarity: 1,
-        is_debuff: false,
-    };  
-
-    let advanced: JoChar = JoChar {
-        name: "Advanced JoChar".to_string(),
-        desc: "Adds +4 to your Score at the end of an Attempt.".to_string(),
-        cost: 10,
-        rarity: 2,
-        is_debuff: false,
-    };
-
-    let funny: JoChar = JoChar { 
-        name: "Funny JoChar".to_string(), 
-        desc: "Reveals 1 Character present in the Code (without Position) before the Start of the Round.".to_string(), 
-        cost: 7, 
-        rarity: 2,  
-        is_debuff: false,
-    };
-
-    let funnier: JoChar = JoChar { 
-        name: "Funnier JoChar".to_string(), 
-        desc: "Reveals 2 Characters in the Code (without Positions) before the Start of the Round. Stops Funny JoChar from Activating.".to_string(), 
-        cost: 14, 
-        rarity: 3,
-        is_debuff: false,  
-    };
-
-
-    let even_funnier: JoChar = JoChar { 
-        name: "Even Funnier JoChar".to_string(), 
-        desc: "Reveals 1 Character in the Code and its Position before the Start of the Round. Stops Funnier and lower JoChars from Activating.".to_string(), 
-        cost: 28, 
-        rarity: 4,
-        is_debuff: false,  
-    };
-
-    let funniest: JoChar = JoChar { 
-        name: "Funniest JoChar".to_string(), 
-        desc: "Reveals 2 Characters in the Code and their Positions before the Start of the Round. Stops Even Funnier and lower JoChars from Activating.".to_string(), 
-        cost: 35, 
-        rarity: 4,
-        is_debuff: false,  
-    };
-
-    let absolute: JoChar = JoChar { 
-        name: "Absolute JoChar".to_string(), 
-        desc: "When Bought, Converts the current Wealth to its Absolute Value, before Deleting itself from held Jochars.".to_string(), 
-        cost: 20, 
-        rarity: 2,
-        is_debuff: false,  
-    };
-
-    let double_the_stakes: JoChar = JoChar { 
-        name: "Double The Stakes".to_string(), 
-        desc: "Doubles the Profit. Doubles the Loss. Note: It Stacks.".to_string(), 
-        cost: 10,
-        rarity: 2,
-        is_debuff: false, 
-    };    
-
-    let vowel_phile: JoChar = JoChar {
-        name: "VowelPhile".to_string(),
-        desc: "The Profit provided by every Vowel guessed correctly is doubled. Penalties remian unaffected.".to_string(),
-        cost: 5,
-        rarity: 1,
-        is_debuff: false,
-    };
-
-    let consonant_phile: JoChar = JoChar {
-        name: "ConsonantPhile".to_string(),
-        desc: "The Profit provided by every Consonant guessed correctly is doubled. Penalties remian unaffected.".to_string(),
-        cost: 5,
-        rarity: 1,
-        is_debuff: false,
-    };
-
-    let number_phile: JoChar = JoChar {
-        name: "NumberPhile".to_string(),
-        desc: "The Profit provided by every Number guessed correctly is doubled. Penalties remian unaffected.".to_string(),
-        cost: 5,
-        rarity: 1,
-        is_debuff: false,
-    };
-
-    let collector: JoChar = JoChar {
-        name: "The Collector".to_string(),
-        desc: "+0.25 Score for each JoChar held.".to_string(),
-        cost: 5,
-        rarity: 1,
-        is_debuff: false,
-    };
-
-    let debuff_collector: JoChar = JoChar {
-        name: "Debuff Collector".to_string(),
-        desc: "+1 Score for each Debuff JoChar held.".to_string(),
-        cost: 5,
-        rarity: 1,
-        is_debuff: false,
-    };
-
-    let negative_marking: JoChar = JoChar {
-        name: "Negative Marking".to_string(),
-        desc: "-1 Score for each Character present in a Guess but not in the Code.".to_string(),
-        cost: 2,
-        rarity: 1,
-        is_debuff: true,
-    };
-
-    available_jochars.push(regular); //0 /
-    available_jochars.push(advanced); //1 /
-    available_jochars.push(funny); //2 /
-    available_jochars.push(funnier); //3 /
-    available_jochars.push(even_funnier); //4 /
-    available_jochars.push(funniest); //5 /
-    available_jochars.push(absolute); //6 
-    available_jochars.push(double_the_stakes); //7 /
-    available_jochars.push(vowel_phile); //8 /
-    available_jochars.push(consonant_phile); //9 /
-    available_jochars.push(number_phile); //10 /
-    available_jochars.push(collector); //11 /
-    available_jochars.push(debuff_collector); //12 
-    available_jochars.push(negative_marking); //13 /
-
-    return available_jochars;
-}   
 
 pub fn show_jochar(jo_char: &JoChar){
     println!("Name: {}", wrap_text::wrap_text(&jo_char.name));
@@ -154,4 +31,102 @@ pub fn show_jochar(jo_char: &JoChar){
     else {
         println!("Debuff: No");
     }
+
+    println!("Cost: {:.2}", &jo_char.cost);
+
+    println!("Rarity: {}", &jo_char.rarity);
+}
+
+pub fn load_jochars(path: &std::path::Path) -> Vec<JoChar> {
+    let file = match File::open(path) {
+        Ok(f) => f,
+        Err(e) => {
+            eprintln!("Failed to open file: {}", e);
+            return Vec::new();
+        }
+    };
+
+    let reader: BufReader<File> = BufReader::new(file);
+
+    let mut jochars: Vec<JoChar> = Vec::new();
+    let mut buffer: Vec<String> = Vec::new();
+    let mut in_section = false;
+
+    for line_result in reader.lines() {
+        let line = match line_result {
+            Ok(l) => l.trim().to_string(),
+            Err(e) => {
+                eprintln!("Read error: {}", e);
+                continue;
+            }
+        };
+
+        match line.as_str() {
+            "<<<" => {
+                buffer.clear();
+                in_section = true;
+            }
+            ">>>" => {
+                if buffer.len() != 5 {
+                    eprintln!("Invalid section (wrong length) {:?}", buffer);
+                    in_section = false;
+                    continue;
+                }
+
+                let cost = match buffer[2].parse::<f64>() {
+                    Ok(v) => v,
+                    Err(_) => {
+                        eprintln!("Invalid cost");
+                        continue;
+                    }
+                };
+
+                let rarity = match buffer[3].parse::<isize>() {
+                    Ok(v) => v,
+                    Err(_) => {
+                        eprintln!("Invalid rarity");
+                        continue;
+                    }
+                };
+
+                let is_debuff = match buffer[4].parse::<bool>() {
+                    Ok(v) => v,
+                    Err(_) => {
+                        eprintln!("Invalid is_debuff");
+                        continue;
+                    }
+                };
+
+                jochars.push(JoChar {
+                    name: buffer[0].clone(),
+                    desc: buffer[1].clone(),
+                    cost,
+                    rarity,
+                    is_debuff,
+                });
+
+                in_section = false;
+            }
+            _ if in_section && !line.is_empty() => buffer.push(line),
+            _ => {}
+        }
+    }
+
+    jochars
+}
+
+pub fn return_jochars_rarity(rarity: isize, jochars_vec: &Vec<JoChar>) -> Vec<usize> {
+    let mut return_vector: Vec<usize> = Vec::new();
+    let mut index: usize = 0;
+
+    for i in jochars_vec {
+        
+        if i.rarity == rarity {
+            return_vector.push(index);
+        }
+
+        index += 1;
+    }
+
+    return return_vector;
 }

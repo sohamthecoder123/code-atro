@@ -92,6 +92,7 @@ impl GameState {
  
 }
 
+
 fn main() {
     //change the name of the tab in the terminal. I have little idea how it works. It just does. (Glory be to Todd Howard.)
     print!("\x1b]2;CodeAtro\x07");
