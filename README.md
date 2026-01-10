@@ -7,8 +7,7 @@ Based on the Accuracy of your Guess, you will gain some Wealth.
 Use this Wealth to buy JoChars - powerups that will help your Run.
 
 ## How to Run
-WIP
-
+Note: The Current Build is planned to only run on Windows and potentially Linux. I do not know how to cross-platform build to macOS, but anyone with cargo should be able to download the source and build it on their system using cargo build --release.
 ## Screenshots
 ???
 
