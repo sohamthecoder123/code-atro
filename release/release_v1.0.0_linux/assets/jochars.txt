@@ -1,0 +1,134 @@
+0
+<<<
+Regular Jochar
+Adds +4 to your Score at the end of a Round.
+5
+1
+false
+>>>
+
+1
+<<<
+Advanced JoChar
+Adds +4 to your Score at the end of an Attempt.
+10
+2
+false
+>>>
+
+2
+<<<
+Funny JoChar
+Reveals 1 Character present in the Code (without Position) before the Start of the Round. 
+7 
+2  
+false
+>>>
+
+3
+<<<
+Funnier JoChar 
+Reveals 2 Characters in the Code (without Positions) before the Start of the Round. Stops Funny JoChar from Activating.
+14
+3
+false  
+>>>
+
+4
+<<<
+Even Funnier JoChar
+Reveals 1 Character in the Code and its Position before the Start of the Round. Stops Funnier and lower JoChars from Activating. 
+28
+4
+false
+>>>
+
+5
+<<<
+Funniest JoChar
+Reveals 2 Characters in the Code and their Positions before the Start of the Round. Stops Even Funnier and lower JoChars from Activating.
+35
+4
+false
+>>>
+
+6
+<<<
+Absolute JoChar
+When Bought, Converts the current Wealth to its Absolute Value, before Deleting itself from held Jochars.
+20 
+2
+false
+>>>
+
+7
+<<<
+Double The Stakes 
+Doubles the Profit. Doubles the Loss. Note: It Stacks. 
+10
+2
+false
+>>>   
+
+8
+<<<
+VowelPhile
+The Profit provided by every Vowel guessed correctly is doubled. Losses remian unaffected.
+5
+1
+false
+>>>
+
+9
+<<<
+ConsonantPhile
+The Profit provided by every Consonant guessed correctly is doubled. Penalties remian unaffected.
+5
+1
+false
+>>>
+
+10
+<<<
+NumberPhile
+The Profit provided by every Number guessed correctly is doubled. Penalties remian unaffected.
+5
+1
+false
+>>>
+
+11
+<<<
+The Collector
++0.25 Score for each JoChar held.
+30
+3
+false
+>>>
+
+12
+<<<
+Debuff Collector
++1 Score for each Debuff JoChar held.
+5
+1
+false
+>>>
+
+13
+<<<
+Negative Marking
+-1 Score for each Character present in a Guess but not in the Code.
+2
+1
+true
+>>>
+
+14
+<<<
+Strict Negative Marking
+-1 Score for each Character present in a Guess but not in the Code. -0.5 Score for each Character present in a Guess also present in the Code but not in the correct Position
+2
+1
+true
+>>>
