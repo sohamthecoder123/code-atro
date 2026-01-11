@@ -1,6 +1,9 @@
 # CODE-ATRO
 A Simple Code-Guessing Game inspired by Balatro
 
+###### Note: 
+Currently, the released versions are only for Windows and Linux. 
+
 ## Basic GamePlay
 Guess the Randomly Generated Code. After every Guess, you will be told how Close you are to the actual Code - whether the Characters are in the Code or not and whether they are in the correct Position or not.
 Based on the Accuracy of your Guess, you will gain some Wealth.
