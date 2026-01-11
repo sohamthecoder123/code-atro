@@ -14,7 +14,7 @@ Download the release_v_x.x.x_os zip, and extract it
 ### Step 3: 
 Search for the code-atro.exe or similarly named file in the extracted folder, and run it to play the game.
 #### Note:
-The Current Build is planned to only run on Windows and potentially Linux. I do not know how to cross-platform build to macOS, but anyone with cargo should be able to download the source and build it on their system using cargo build --release.
+The Current Build only runs on Windows. I do not know how to cross-platform build to macOS, but anyone with cargo should be able to download the source and build it on their system using cargo build --release.
 ## Screenshots
 ???
 
