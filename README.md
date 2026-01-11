@@ -19,7 +19,7 @@ The Current Build only runs on Windows and Linux (the Linux build has not been t
 ???
 
 ## Acknowledgements
-1. Aditya Thakkar (), The Brown Rust Book, ChatGPT - For helping me learn the language
-2. Anirudh Gupta () - For organizing DFOC
+1. Aditya Thakkar, The Brown Rust Book, ChatGPT - For helping me learn the language
+2. Anirudh Gupta - For organizing DFOC
 
 Made for the Databased Fall of Code 2026 organized by the Databased Club, IISc
