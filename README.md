@@ -16,7 +16,8 @@ Search for the code-atro.exe or similarly named file in the extracted folder, an
 #### Note:
 The Current Build only runs on Windows and Linux (the Linux build has not been tested fully, only via WSL2. It may have errors.). I do not know how to cross-platform build to macOS, but anyone with cargo should be able to download the source and build it on their system using cargo build --release.
 ## Screenshots
-???
+<img width="2880" height="878" alt="Screenshot (223)" src="https://github.com/user-attachments/assets/d9c2243f-5897-4a4b-9d2a-554da3f69ba3" />
+
 
 ## Acknowledgements
 1. Aditya Thakkar, The Brown Rust Book, ChatGPT - For helping me learn the language
