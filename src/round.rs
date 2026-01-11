@@ -2,7 +2,7 @@
 
 
 use std::collections::HashMap; //The Funny JoChars, which reveal the position too, use HashMaps for their functioning 
-use crate::code_guess::ResultCode; use crate::jochar;
+use crate::code_guess::ResultCode; 
 //the public enum from code_guess. The return of the code_guess's function are is as this enum.
 use crate::random_code_generator; //to generate a random code every round
 use crate::text_parser; //to parse the code, etc.
@@ -127,12 +127,6 @@ pub fn round(overall_alphabet_string: &str, alphabet_length: usize, code_length:
         let guessed_code: Vec<String> = text_parser::text_to_code(&input); //convert the guessed string to the code format
         
         separating_line();
-
-        //show the code (debugging only)
-        println!("The Code is: ");
-        for i in &generated_code {
-            print!("{} ", i);
-        }
 
         //get the result of the code
         let result: Vec<ResultCode> = code_guess::guess_code_check(&generated_code, &guessed_code);
@@ -273,7 +267,7 @@ pub fn round(overall_alphabet_string: &str, alphabet_length: usize, code_length:
             println!("The Debuff Collector Found.");
             println!("Number of Debuff JoChars Found: {}", debuff_count);
             println!("Score +(1x{})", debuff_count);
-            for i in 1..= debuff_count {
+            for _i in 1..= debuff_count {
                 score += 1.0;
             }
         }
@@ -293,9 +287,23 @@ pub fn round(overall_alphabet_string: &str, alphabet_length: usize, code_length:
 
             *wealth += score;
 
+            //show the code
+            print!("The Code was: ");
+            for i in &generated_code {
+                print!("{} ", i);
+            }
+            println!("");
+
             return true;
         }
     }
+
+    //show the code
+    print!("The Code was: ");
+    for i in &generated_code {
+        print!("{} ", i);
+    }
+    println!("");
 
     return false;
 }

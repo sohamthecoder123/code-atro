@@ -1,5 +1,5 @@
 /*
-This file handles the random code generation
+This file handles the random code generation as well as random code revelations (ie, the stuff funny jochars do)
 */
 
 use rand::Rng; 
@@ -47,6 +47,7 @@ pub fn reveal_characters_position(code: &Vec<String>, n: usize) -> HashMap<usize
     let mut _perm_1_to_n: Vec<usize> = (1..=n).collect();
     _perm_1_to_n.shuffle(&mut rand::thread_rng());
     _perm_1_to_n.truncate(n);
+    _perm_1_to_n.truncate(code.len());
 
     let mut _revealed_characters: HashMap<usize, &String> = HashMap::new();
 

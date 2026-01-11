@@ -56,11 +56,13 @@ pub fn shop (wealth: &mut f64, available_jochars: &Vec<jochar::JoChar>, jochars_
 
     //Step 2: Now that the market has been decided, time to show the user what they got
     println!("The JoChars in the Market are:");
-    for i in 0..3 {
+    for i in 0..=2 {
         separating_line();
-        println!("JoChar {}: ", i);
+        println!("JoChar {}: ", i + 1);
         jochar::show_jochar(&available_jochars[market[i]]);
     }
+
+    separating_line();
 
     //Step 3: Now, get the user input regarding the JoChar they want
     println!("Enter your Choice: ");
@@ -71,12 +73,35 @@ pub fn shop (wealth: &mut f64, available_jochars: &Vec<jochar::JoChar>, jochars_
         let available_choice: Vec<usize> = vec![0, 1, 2];
 
         if available_choice.contains(&choice) {
-            //Step 4: Add the chosen JoChar to the jochars_in_play
             let index: usize = market[choice];
-            jochars_in_play[index] += 1;
 
-            //Step 5: Decrease the player's wealth
+            //Step 4: Decrease the player's wealth
             *wealth -= available_jochars[index].cost;
+
+            //Step 5: Add the chosen JoChar to the jochars_in_play
+            println!("You have Bought: {}, for a price of {:.2} Wealth.", available_jochars[index].name, available_jochars[index].cost);
+
+            //Absolute JoChar
+            if index == 6 {
+                println!("Absolute JoChar Found!");
+                if *wealth >= 0.0 {
+                    println!("The Wealth has not been Changed, and remains: {}", *wealth);
+                }
+                else {
+                    println!("The Wealth has been Changed from {} to {}.", *wealth, -*wealth);
+                    *wealth = -*wealth;
+                }
+
+                println!("Absolute JoChar has been Consumed.");
+            }
+
+            else {
+                jochars_in_play[index] += 1;
+            }
+
+            println!("Your Current Wealth is: {}", *wealth);
+
+            break;
         }
 
         println!("INVALID CHOICE!!!");

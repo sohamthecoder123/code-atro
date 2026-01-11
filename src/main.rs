@@ -98,7 +98,7 @@ fn main() {
     print!("\x1b]2;CodeAtro\x07");
 
 
-    let mut current_state: GameState = GameState::Play; //defines a new variable that actually stores the current game state and sets it to the initial value of MainMenu (ie, the game opens with the menu)
+    let mut current_state: GameState = GameState::MainMenu; //defines a new variable that actually stores the current game state and sets it to the initial value of MainMenu (ie, the game opens with the menu)
     
     //the main gameplay loop
     loop {

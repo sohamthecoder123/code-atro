@@ -12,8 +12,8 @@ use std::io::{BufRead, BufReader};
 //the JoChar struct. Each JoChar has basic stuff like name, description, cost, rarity and a variable to store if it is a debuff or not
 # [derive(Clone)]
 pub struct JoChar {
-    name: String, //the name of the JoChar
-    desc: String, //description - what the JoChar does
+    pub name: String, //the name of the JoChar
+    pub desc: String, //description - what the JoChar does
     pub cost: f64, //the cost of the JoChar in the Shop
     pub rarity: isize, //the rarity of the JoChar. 
     pub is_debuff: bool, //whether the JoChar is a debuff or not. Used by the Debuff Collector JoChar to determine the bonus it gives out.

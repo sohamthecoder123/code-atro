@@ -24,8 +24,9 @@ pub fn play(){
 
     let mut jochars_in_play: Vec<usize> = vec![0; available_jochars.len()];
 
-    let rarity_1: Vec<usize> = jochar::return_jochars_rarity(1, &available_jochars);
+    //let rarity_1: Vec<usize> = jochar::return_jochars_rarity(1, &available_jochars);
     
+    /*
     for i in &rarity_1 {
         println!("{}", i);
     }
@@ -34,6 +35,7 @@ pub fn play(){
     jochars_in_play[5] = 1;
     jochars_in_play[7] = 1;
     jochars_in_play[13] = 3;
+    */
     
 
     let mut number_of_debuffs: usize = 0;
@@ -74,7 +76,7 @@ pub fn play(){
 
         println!("Number of Debuffed JoChars: {}", number_of_debuffs);
 
-
+        separating_line();
 
         println!("Round {}", round_no);
         separating_line();
@@ -87,15 +89,19 @@ pub fn play(){
         println!("Round {} has been Defeated", round_no);      
         separating_line();  
 
+        round_no += 1;
+
         let two: usize = 2;
-        current_length = two.pow((round_no / 2) as u32);
+        current_length = two.pow((round_no) as u32);
 
         println!("Enter anything to Go To Shop.");
-        let _dummy: String = user_input::get_user_input_trimmed("");
+        let mut _dummy: String = user_input::get_user_input();
         clear_terminal::clear_terminal();
         shop::shop(&mut wealth, &available_jochars, &mut jochars_in_play);
-
-        round_no += 1;
+        println!("Enter anything to go to Round {}", round_no);
+        _dummy = user_input::get_user_input();
+        clear_terminal::clear_terminal();
+        separating_line();
     }
     
     println!("You Lost!!!");
