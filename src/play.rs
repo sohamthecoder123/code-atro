@@ -80,7 +80,7 @@ pub fn play(){
 
         println!("Round {}", round_no);
         separating_line();
-        let has_won: bool = round::round(overall_alphabet, 2 * current_length, current_length, current_length + 1, &mut wealth, number_of_debuffs, &jochars_in_play);
+        let has_won: bool = round::round(overall_alphabet, 2 * current_length, current_length, current_length * 3 / 2, &mut wealth, number_of_debuffs, &jochars_in_play);
         
         if !has_won {
             break;

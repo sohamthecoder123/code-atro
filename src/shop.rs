@@ -65,10 +65,18 @@ pub fn shop (wealth: &mut f64, available_jochars: &Vec<jochar::JoChar>, jochars_
     separating_line();
 
     //Step 3: Now, get the user input regarding the JoChar they want
-    println!("Enter your Choice: ");
+    println!("Enter your Choice (Enter 0 if you do not wish to buy anything): ");
     loop {
         let input_str: String = user_input::get_user_input_trimmed("");
-        let choice: usize = text_parser::text_to_u_int(&input_str) - 1;
+        let mut choice: usize = text_parser::text_to_u_int(&input_str);
+
+        if choice == 0 {
+            break;
+        }
+
+        else {
+            choice -= 1;
+        }
 
         let available_choice: Vec<usize> = vec![0, 1, 2];
 
@@ -76,30 +84,38 @@ pub fn shop (wealth: &mut f64, available_jochars: &Vec<jochar::JoChar>, jochars_
             let index: usize = market[choice];
 
             //Step 4: Decrease the player's wealth
-            *wealth -= available_jochars[index].cost;
+            if *wealth >= 0.0 {
+                *wealth -= available_jochars[index].cost;
 
-            //Step 5: Add the chosen JoChar to the jochars_in_play
-            println!("You have Bought: {}, for a price of {:.2} Wealth.", available_jochars[index].name, available_jochars[index].cost);
+                //Step 5: Add the chosen JoChar to the jochars_in_play
+                println!("You have Bought: {}, for a price of {:.2} Wealth.", available_jochars[index].name, available_jochars[index].cost);
 
-            //Absolute JoChar
-            if index == 6 {
-                println!("Absolute JoChar Found!");
-                if *wealth >= 0.0 {
-                    println!("The Wealth has not been Changed, and remains: {}", *wealth);
+                //Absolute JoChar
+                if index == 6 {
+                    println!("Absolute JoChar Found!");
+                    if *wealth >= 0.0 {
+                        println!("The Wealth has not been Changed, and remains: {}", *wealth);
+                    }
+                    else {
+                        println!("The Wealth has been Changed from {} to {}.", *wealth, -*wealth);
+                        *wealth = -*wealth;
+                    }
+
+                    println!("Absolute JoChar has been Consumed.");
                 }
+
                 else {
-                    println!("The Wealth has been Changed from {} to {}.", *wealth, -*wealth);
-                    *wealth = -*wealth;
+                    jochars_in_play[index] += 1;
                 }
 
-                println!("Absolute JoChar has been Consumed.");
+                println!("Your Current Wealth is: {}", *wealth);
+
             }
 
             else {
-                jochars_in_play[index] += 1;
+                println!("The Selected JoChar cannot be bought by you as you are in Debt.");
+                continue;
             }
-
-            println!("Your Current Wealth is: {}", *wealth);
 
             break;
         }
